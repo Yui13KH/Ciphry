@@ -3,6 +3,7 @@
 
 void print_general_help();
 void print_caesar_help();
+void print_vigenere_help();
 void list_ciphers();
 
 #endif

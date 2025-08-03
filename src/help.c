@@ -21,7 +21,23 @@ void print_caesar_help() {
     printf("  --decrypt \"<text>\" --key <shift>    Decrypts the text using Caesar cipher\n");
 }
 
+void print_atbash_help() {
+    printf("Atbash Cipher Help:\n");
+    printf("  --encrypt \"<text>\"    Encrypts the text using Atbash cipher\n");
+    printf("  --decrypt \"<text>\"    Decrypts the text using Atbash cipher (same as encrypt)\n");
+}
+
+void print_vigenere_help() {
+    printf("Vigenère Cipher Help:\n");
+    printf("  --encrypt \"<text>\" --key <keyword>    Encrypts the text using the Vigenère cipher\n");
+    printf("  --decrypt \"<text>\" --key <keyword>    Decrypts the text using the Vigenère cipher\n");
+}
+
+
 void list_ciphers() {
     printf("Available ciphers:\n");
     printf("  caesar    - Simple substitution cipher shifting letters by a fixed number.\n");
+    printf("  atbash    - Substitution cipher that reverses the alphabet (A↔Z, B↔Y, etc.).\n");
+    printf("  vigenere  - Polyalphabetic cipher using a repeating keyword for shifting letters.\n");
 }
+
