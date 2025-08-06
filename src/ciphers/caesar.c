@@ -17,3 +17,7 @@ void encrypt_caesar(const char *plaintext, int shift_key) {
 void decrypt_caesar(const char *ciphertext, int shift_key) {
     encrypt_caesar(ciphertext, 26 - (shift_key % 26));
 }
+
+void rot13_cipher(const char *text){
+    encrypt_caesar(text, 13);
+}

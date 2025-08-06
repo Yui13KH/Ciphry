@@ -33,11 +33,18 @@ void print_vigenere_help() {
     printf("  --decrypt \"<text>\" --key <keyword>    Decrypts the text using the Vigenère cipher\n");
 }
 
+void print_rot13_help(){
+    printf("Rot13 Cipher Help:\n");
+    printf("  --encrypt \"<text>\"    Encrypts the text using the rot13 cipher\n");
+    printf("  --decrypt \"<text>\"    Decrypts the text using the rot13 cipher\n");
+}
+
 
 void list_ciphers() {
     printf("Available ciphers:\n");
     printf("  caesar    - Simple substitution cipher shifting letters by a fixed number.\n");
     printf("  atbash    - Substitution cipher that reverses the alphabet (A↔Z, B↔Y, etc.).\n");
     printf("  vigenere  - Polyalphabetic cipher using a repeating keyword for shifting letters.\n");
+    printf("  rot13     - Caesar cipher with a fixed shift of 13 (A↔N, B↔O, etc.).\n");
 }
 

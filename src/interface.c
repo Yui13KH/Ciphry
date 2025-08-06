@@ -104,6 +104,27 @@ int handle_command(int argc, char *argv[]) {
         }
     }
 
+    if (arg_is(argv[1], "rot13")) {
+        if (argc < 4) {
+            printf("Error: Not enough arguments for ROT13 cipher.\n");
+            print_rot13_help();
+            return 1;
+        }
+
+        const char *mode = argv[2];
+        const char *text = argv[3];
+
+        if (arg_is(mode, "--encrypt") || arg_is(mode, "--decrypt")) {
+            // ROT13 encryption & decryption are the same
+            rot13_cipher(text);
+            return 0;
+        } else {
+            printf("Unknown mode: %s\n", mode);
+            print_rot13_help();
+            return 1;
+        }
+    }   
+
     printf("Unknown cipher: %s\n", argv[1]);
     print_general_help();
     return 1;

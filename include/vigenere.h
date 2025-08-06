@@ -1,5 +1,5 @@
-#ifndef CAESAR_H
-#define CAESAR_H
+#ifndef VIGENERE_H
+#define VIGENERE_H
 
 void vigenere_cipher(const char *text, const char *key, int encrypt);
 

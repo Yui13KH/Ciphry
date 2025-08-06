@@ -1,5 +1,5 @@
-#ifndef CAESAR_H
-#define CAESAR_H
+#ifndef ATBASH_H
+#define ATBASH_H
 
 void atbash_cipher(const char *text);
 
