@@ -7,10 +7,15 @@
 
 // Define the list of ciphers 
 static Cipher cipher_list[] = {
-    { "atbash",   atbash_run,   print_atbash_help, ""},
-    { "caesar",   caesar_run,   print_caesar_help, ""},
-    { "vigenere", vigenere_run, print_vigenere_help, ""},
-    { "rot13" , rot13_run, print_rot13_help, ""}
+    {"atbash", atbash_run, print_atbash_help,
+     "Substitution cipher: reverses the alphabet (A ↔ Z, B ↔ Y, ...)"},
+    {"caesar", caesar_run, print_caesar_help,
+     "Shift cipher: shifts letters by a fixed key (e.g., A → D)"},
+    {"vigenere", vigenere_run, print_vigenere_help,
+     "Polyalphabetic cipher: uses a keyword to shift letters"},
+    {"rot13", rot13_run, print_rot13_help,
+     "Special Caesar cipher with fixed shift of 13 (A ↔ N)"}
+
     // add more ciphers easily here
 };
 
