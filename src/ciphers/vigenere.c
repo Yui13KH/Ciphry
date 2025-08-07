@@ -1,6 +1,8 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <string.h>
+#include "vigenere.h"
+#include "help.h"
 
 void normalize_key(char *key) {
     int i = 0, j = 0;
@@ -41,4 +43,27 @@ void vigenere_cipher(const char *text, const char *key, int encrypt) {
         putchar(ch);
     }
     putchar('\n');
+}
+
+void vigenere_run(int argc, char *argv[]) {
+    if (argc < 5) {
+        print_vigenere_help();
+        return;
+    }
+
+    const char *mode = argv[2];
+    const char *text = argv[3];
+    const char *key = argv[4];
+
+    int encrypt;
+    if (strcmp(mode, "--encrypt") == 0 || strcmp(mode, "encrypt") == 0){
+        encrypt = 1;
+    } else if (strcmp(mode, "--decrypt") == 0 || strcmp(mode, "decrypt") == 0){
+        encrypt = 0;
+    } else {
+        fprintf(stderr, "Unknown mode '%s'. Use '--encrypt' or '--decrypt'.\n", mode);
+        return;
+    }
+
+    vigenere_cipher(text, key, encrypt);
 }

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "help.h"
+#include "cipher_registry.h"
 
 void print_general_help() {
     printf("Ciphry - Command-line cryptography toolkit\n\n");
@@ -42,9 +43,15 @@ void print_rot13_help(){
 
 void list_ciphers() {
     printf("Available ciphers:\n");
-    printf("  caesar    - Simple substitution cipher shifting letters by a fixed number.\n");
-    printf("  atbash    - Substitution cipher that reverses the alphabet (A↔Z, B↔Y, etc.).\n");
-    printf("  vigenere  - Polyalphabetic cipher using a repeating keyword for shifting letters.\n");
-    printf("  rot13     - Caesar cipher with a fixed shift of 13 (A↔N, B↔O, etc.).\n");
+    // printf("  caesar    - Simple substitution cipher shifting letters by a fixed number.\n");
+    // printf("  atbash    - Substitution cipher that reverses the alphabet (A↔Z, B↔Y, etc.).\n");
+    // printf("  vigenere  - Polyalphabetic cipher using a repeating keyword for shifting letters.\n");
+    // printf("  rot13     - Caesar cipher with a fixed shift of 13 (A↔N, B↔O, etc.).\n");
+    int count = 0;
+    const Cipher *ciphers = get_registered_ciphers(&count);
+    printf("Supported ciphers (%d):\n", count);
+    for (int i = 0; i < count; i++) {
+        printf("  %s - %s\n", ciphers[i].name, ciphers[i].description);
+    }
 }
 

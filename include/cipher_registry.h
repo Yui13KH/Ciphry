@@ -7,14 +7,15 @@ typedef void (*help_func_t)(void);
 
 // The struct each cipher will register
 typedef struct {
-    const char *name;             // "vigenere", "caesar", etc.
-    cipher_func_t run;           // function to call when running
-    help_func_t show_help;       // function to print help
+    const char *name;         // "vigenere", "caesar", etc.
+    cipher_func_t run;        // function to call when running
+    help_func_t show_help;    // function to print help
+    const char *description;  // description of the cipher
 } Cipher;
 
 // Function to get the list of all registered ciphers
-const Cipher* get_registered_ciphers(int *count);
+const Cipher *get_registered_ciphers(int *count);
 
-const Cipher* find_cipher_by_name(const char *name);
+const Cipher *find_cipher_by_name(const char *name);
 
-#endif // CIPHER_REGISTRY_H
+#endif  // CIPHER_REGISTRY_H

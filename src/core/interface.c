@@ -10,122 +10,33 @@
 #include "vigenere.h"
 
 
-int handle_command(int argc, char *argv[]) {
-    if (argc == 1 || arg_is(argv[1], "--help") || arg_is(argv[1], "-h")) {
+int handle_command(int argc, char * argv[]) {
+    #include "cipher_registry.h"
+
+    if (argc < 2) {
+        print_general_help();
+        return 1;
+    }
+
+     const char *cmd = argv[1];
+
+    if (strcmp(cmd, "-h") == 0 || strcmp(cmd, "--help") == 0) {
         print_general_help();
         return 0;
     }
 
-    if (arg_is(argv[1], "--list") || arg_is(argv[1], "-l")) {
+    if (strcmp(cmd, "-l") == 0 || strcmp(cmd, "--list") == 0) {
         list_ciphers();
         return 0;
     }
 
-    if (arg_is(argv[1], "caesar")) {
-        if (argc < 6) {
-            printf("Error: Not enough arguments for Caesar cipher.\n");
-            print_caesar_help();
-            return 1;
-        }
-
-        const char *mode = argv[2];
-        const char *text = argv[3];
-
-        if (!arg_is(argv[4], "--key")) {
-            printf("Error: Expected '--key' before the shift value.\n");
-            print_caesar_help();
-            return 1;
-        }
-
-        int key = atoi(argv[5]);
-
-        if (arg_is(mode, "--encrypt")) {
-            encrypt_caesar(text, key);
-            return 0;
-        } else if (arg_is(mode, "--decrypt")) {
-            decrypt_caesar(text, key);
-            return 0;
-        } else {
-            printf("Unknown mode: %s\n", mode);
-            print_caesar_help();
-            return 1;
-        }
+    const Cipher *cipher = find_cipher_by_name(cmd);
+    if (cipher) {
+        cipher->run(argc, argv);
+        return 0;
+    } else {
+        printf("Unknown command or cipher: %s\n", cmd);
+        printf("Try --help for usage.\n");
+        return 1;
     }
-
-    if (arg_is(argv[1], "atbash")) {
-        if (argc < 4) {
-            printf("Error: Not enough arguments for Atbash cipher.\n");
-            print_atbash_help();
-            return 1;
-        }
-
-        const char *mode = argv[2];
-        const char *text = argv[3];
-
-        if (arg_is(mode, "--encrypt") || arg_is(mode, "--decrypt")) {
-            // Atbash encryption and decryption are identical
-            atbash_cipher(text);
-            return 0;
-        } else {
-            printf("Unknown mode: %s\n", mode);
-            print_atbash_help();
-            return 1;
-        }
-    }
-
-    if (arg_is(argv[1], "vigenere")) {
-        if (argc < 6) {
-            printf("Error: Not enough arguments for Vigenère cipher.\n");
-            print_vigenere_help();
-            return 1;
-        }
-
-        const char *mode = argv[2];
-        const char *text = argv[3];
-
-        if (!arg_is(argv[4], "--key")) {
-            printf("Error: Expected '--key' before the keyword.\n");
-            print_vigenere_help();
-            return 1;
-        }
-
-        const char *key = argv[5];
-
-        if (arg_is(mode, "--encrypt")) {
-            vigenere_cipher(text, key, 1);  // 1 = encrypt
-            return 0;
-        } else if (arg_is(mode, "--decrypt")) {
-            vigenere_cipher(text, key, 0);  // 0 = decrypt
-            return 0;
-        } else {
-            printf("Unknown mode: %s\n", mode);
-            print_vigenere_help();
-            return 1;
-        }
-    }
-
-    if (arg_is(argv[1], "rot13")) {
-        if (argc < 4) {
-            printf("Error: Not enough arguments for ROT13 cipher.\n");
-            print_rot13_help();
-            return 1;
-        }
-
-        const char *mode = argv[2];
-        const char *text = argv[3];
-
-        if (arg_is(mode, "--encrypt") || arg_is(mode, "--decrypt")) {
-            // ROT13 encryption & decryption are the same
-            rot13_cipher(text);
-            return 0;
-        } else {
-            printf("Unknown mode: %s\n", mode);
-            print_rot13_help();
-            return 1;
-        }
-    }   
-
-    printf("Unknown cipher: %s\n", argv[1]);
-    print_general_help();
-    return 1;
-}
+}   
