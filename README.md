@@ -13,7 +13,9 @@ It enables encryption and decryption of text via a clean CLI interface, designed
   - Caesar cipher (with encryption and decryption)  
   - ROT13 cipher  
   - Atbash cipher  
-  - Vigenère cipher  
+  - Vigenère cipher
+  - affine cipher
+  - railfence cipher  
 
 ---
 

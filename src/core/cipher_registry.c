@@ -3,6 +3,7 @@
 #include "caesar.h"
 #include "vigenere.h"
 #include "affine.h"
+#include "railfence.h"
 #include "help.h"
 #include <string.h>
 
@@ -16,7 +17,11 @@ static Cipher cipher_list[] = {
      "Polyalphabetic cipher: uses a keyword to shift letters"},
     {"rot13", rot13_run, print_rot13_help,
      "Special Caesar cipher with fixed shift of 13 (A ↔ N)"},
-    {"affine", affine_run, print_affine_help, "Affine cipher with keys a (coprime) and b for linear transformation"}
+    {"affine", affine_run, print_affine_help, "Affine cipher with keys a (coprime) and b for linear transformation"},
+    {"railfence", railfence_run, print_railfence_help,
+ "Rail Fence cipher: writes text in a zigzag pattern with specified rails"}
+
+
 
 
     // add more ciphers easily here

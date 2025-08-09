@@ -46,6 +46,12 @@ void print_affine_help() {
     printf("  --decrypt \"<text>\" --a <a> --b <b>    Decrypts text with the Affine cipher\n");
 }
 
+void print_railfence_help(void) {
+    printf("Rail Fence Cipher Help:\n");
+    printf("  --encrypt \"<text>\" <rails>    Encrypt text with specified number of rails\n");
+    printf("  --decrypt \"<text>\" <rails>    Decrypt text with specified number of rails\n");
+}
+
 
 
 void list_ciphers() {
