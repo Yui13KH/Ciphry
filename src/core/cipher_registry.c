@@ -2,6 +2,7 @@
 #include "atbash.h"
 #include "caesar.h"
 #include "vigenere.h"
+#include "affine.h"
 #include "help.h"
 #include <string.h>
 
@@ -14,7 +15,9 @@ static Cipher cipher_list[] = {
     {"vigenere", vigenere_run, print_vigenere_help,
      "Polyalphabetic cipher: uses a keyword to shift letters"},
     {"rot13", rot13_run, print_rot13_help,
-     "Special Caesar cipher with fixed shift of 13 (A ↔ N)"}
+     "Special Caesar cipher with fixed shift of 13 (A ↔ N)"},
+    {"affine", affine_run, print_affine_help, "Affine cipher with keys a (coprime) and b for linear transformation"}
+
 
     // add more ciphers easily here
 };

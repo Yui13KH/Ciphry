@@ -6,6 +6,7 @@ void print_caesar_help();
 void print_vigenere_help();
 void print_atbash_help();
 void print_rot13_help();
+void print_affine_help();
 void list_ciphers();
 
 #endif
