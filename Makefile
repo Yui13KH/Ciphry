@@ -37,3 +37,4 @@ $(TEST_TARGET): $(TEST_OBJ) $(CORE_OBJ)
 clean:
 	rm -rf $(BIN_DIR)/*.o $(BIN_DIR)/$(TARGET) $(BIN_DIR)/$(TEST_TARGET)
 	rm -f $(OBJ) $(TEST_OBJ)
+	

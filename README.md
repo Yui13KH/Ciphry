@@ -20,6 +20,14 @@ It enables encryption and decryption of text via a clean CLI interface, designed
 
 ---
 
+## Demo
+
+![Ciphry Demo](media/ciphry_demo.gif)
+
+This is a general demo showcasing Ciphry’s encryption and decryption capabilities.
+
+---
+
 ## Build Instructions
 
 Ensure you have `gcc` installed and are using a Unix-like environment (Linux, WSL, MSYS2, macOS).
