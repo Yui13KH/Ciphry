@@ -89,16 +89,34 @@ Unit tests are implemented with the [Criterion](https://criterion.readthedocs.io
 
 To run the unit tests, you need to have the Criterion testing framework installed.
 
-On Debian/Ubuntu:
+### On Debian/Ubuntu:
 ```bash
 sudo apt install libcriterion-dev
-```
-On Arch linux(manjaro)
+````
+
+### On Arch Linux (Manjaro):
+
 ```bash
 sudo pacman -S criterion
 ```
 
-Run all tests by changing into `bin` and executing:
+### On Windows:
+
+* **Preferred method:**
+  Use **Windows Subsystem for Linux (WSL)** with a Linux distro (e.g., Ubuntu).
+  Then install Criterion inside WSL as on Debian/Ubuntu above.
+  This is by far the easiest and most reliable way to run the tests on Windows.
+
+* **If you cannot use WSL:**
+  You will need to build Criterion from source inside MSYS2 MinGW64 shell.
+  This requires installing dependencies like CMake, Ninja, and a build toolchain, then cloning and building Criterion manually.
+  See [Criterion GitHub](https://github.com/Snaipe/Criterion) for detailed instructions.
+
+---
+
+## Running Tests
+
+After installing Criterion, run all tests by changing into the `bin` directory and executing:
 
 ```bash
 cd bin
@@ -106,7 +124,6 @@ cd bin
 ```
 
 The tests cover individual ciphers and utility functions to ensure correctness.
-
 ---
 
 ## Project Structure & Design
