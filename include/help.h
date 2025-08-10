@@ -8,6 +8,7 @@ void print_atbash_help();
 void print_rot13_help();
 void print_affine_help();
 void print_railfence_help(void);
+void print_xor_help(void);
 void list_ciphers();
 
 #endif

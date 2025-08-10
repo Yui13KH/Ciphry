@@ -5,6 +5,7 @@
 #include "affine.h"
 #include "railfence.h"
 #include "help.h"
+#include "xor.h"
 #include <string.h>
 
 // Define the list of ciphers 
@@ -19,7 +20,10 @@ static Cipher cipher_list[] = {
      "Special Caesar cipher with fixed shift of 13 (A ↔ N)"},
     {"affine", affine_run, print_affine_help, "Affine cipher with keys a (coprime) and b for linear transformation"},
     {"railfence", railfence_run, print_railfence_help,
- "Rail Fence cipher: writes text in a zigzag pattern with specified rails"}
+ "Rail Fence cipher: writes text in a zigzag pattern with specified rails"},
+ {"xor", xor_run, print_xor_help,
+ "XOR cipher: bitwise exclusive OR with repeating key (symmetric encryption)"},
+
 
 
 

@@ -52,6 +52,11 @@ void print_railfence_help(void) {
     printf("  --decrypt \"<text>\" <rails>    Decrypt text with specified number of rails\n");
 }
 
+void print_xor_help(void) {
+    printf("Usage: xor <encrypt|decrypt> <key> <text>\n");
+    printf("Example: xor encrypt secret \"Hello World\"\n");
+    printf("Note: For encrypt mode, output is shown as hex bytes.\n");
+}
 
 
 void list_ciphers() {

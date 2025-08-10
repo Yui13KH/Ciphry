@@ -1,4 +1,5 @@
 #include <string.h>
+#include <ctype.h>
 #include "utils.h"
 
 int arg_is(const char *arg, const char *expected){
@@ -26,4 +27,10 @@ int gcd(int x, int y) {
 
 bool is_coprime(int a, int b) {
     return gcd(a, b) == 1;
+}
+
+unsigned char hex_to_byte(char high, char low) {
+    unsigned char h = (unsigned char)(isdigit(high) ? high - '0' : toupper(high) - 'A' + 10);
+    unsigned char l = (unsigned char)(isdigit(low)  ? low  - '0' : toupper(low)  - 'A' + 10);
+    return (h << 4) | l;
 }
