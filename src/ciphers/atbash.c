@@ -1,10 +1,11 @@
 #include <ctype.h>
 #include <stdio.h>
+#include <string.h>
 
 #include "atbash.h"
 #include "help.h"
 
-void atbash_cipher(const char *text) {
+void atbash_cipher(const char *text, char *output) {
     for (int i = 0; text[i] != '\0'; i++) {
         char ch = text[i];
         if (isupper(ch)) {
@@ -12,17 +13,19 @@ void atbash_cipher(const char *text) {
         } else if (islower(ch)) {
             ch = 'a' + (25 - (ch - 'a'));
         }
-        putchar(ch);
+        output[i] = ch;
     }
-    putchar('\n');
+    output[strlen(text)] = '\0'; // null-terminate output
 }
 
 void atbash_run(int argc, char *argv[]) {
-    if (argc < 3) {
+    if (argc > 3) {
         print_atbash_help();
         return;
     }
 
     const char *text = argv[2];
-    atbash_cipher(text);
+    char output[1024]; // big enough buffer
+    atbash_cipher(text, output);
+    printf("%s\n", output);
 }

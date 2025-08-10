@@ -5,16 +5,18 @@
 #include <stdlib.h>
 #include <string.h>
 
-void railfence_cipher(const char *text, int rails, int encrypt) {
+void railfence_cipher(const char *text, int rails, int encrypt, char *output) {
     if (rails < 2) {
         fprintf(stderr, "Number of rails must be at least 2.\n");
+        output[0] = '\0';
         return;
     }
 
-    int len = strlen(text);
+    int len = (int)strlen(text);
     char *result = malloc(len + 1);
     if (!result) {
         fprintf(stderr, "Memory allocation failed.\n");
+        output[0] = '\0';
         return;
     }
 
@@ -27,7 +29,6 @@ void railfence_cipher(const char *text, int rails, int encrypt) {
             int down = 1;
 
             while (i < len) {
-                // Include ALL characters, no skipping spaces
                 result[idx++] = text[i];
 
                 if (r == 0 || r == rails - 1)
@@ -44,11 +45,11 @@ void railfence_cipher(const char *text, int rails, int encrypt) {
         }
         result[idx] = '\0';
     } else {
-        // Decryption code remains the same, works for all chars
         int *pos = calloc(len, sizeof(int));
         if (!pos) {
             fprintf(stderr, "Memory allocation failed.\n");
             free(result);
+            output[0] = '\0';
             return;
         }
 
@@ -65,6 +66,7 @@ void railfence_cipher(const char *text, int rails, int encrypt) {
             fprintf(stderr, "Memory allocation failed.\n");
             free(result);
             free(pos);
+            output[0] = '\0';
             return;
         }
 
@@ -77,6 +79,7 @@ void railfence_cipher(const char *text, int rails, int encrypt) {
             free(result);
             free(pos);
             free(row_counts);
+            output[0] = '\0';
             return;
         }
 
@@ -91,6 +94,7 @@ void railfence_cipher(const char *text, int rails, int encrypt) {
             free(pos);
             free(row_counts);
             free(row_starts);
+            output[0] = '\0';
             return;
         }
 
@@ -107,11 +111,11 @@ void railfence_cipher(const char *text, int rails, int encrypt) {
         free(row_indices);
     }
 
-    printf("%s\n", result);
+    // Copy result to output buffer
+    strcpy(output, result);
     free(result);
 }
 
-// CLI run function
 void railfence_run(int argc, char *argv[]) {
     if (argc < 5) {
         print_railfence_help();
@@ -127,12 +131,17 @@ void railfence_run(int argc, char *argv[]) {
         return;
     }
 
+    char output[2048]; // enough buffer for typical use cases
+
     if (strcmp(mode, "--encrypt") == 0 || strcmp(mode, "encrypt") == 0) {
-        railfence_cipher(text, rails, 1);
+        railfence_cipher(text, rails, 1, output);
     } else if (strcmp(mode, "--decrypt") == 0 || strcmp(mode, "decrypt") == 0) {
-        railfence_cipher(text, rails, 0);
+        railfence_cipher(text, rails, 0, output);
     } else {
         fprintf(stderr, "Unknown mode '%s'. Use '--encrypt' or '--decrypt'.\n",
                 mode);
+        return;
     }
+
+    printf("%s\n", output);
 }

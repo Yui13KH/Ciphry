@@ -15,14 +15,15 @@ void normalize_key(char *key) {
     key[j] = '\0';
 }
 
-void vigenere_cipher(const char *text, const char *key, int encrypt) {
+void vigenere_cipher(const char *text, const char *key, int encrypt,
+                     char *output) {
     char normalized_key[256];
     strncpy(normalized_key, key, sizeof(normalized_key) - 1);
     normalized_key[sizeof(normalized_key) - 1] = '\0';
     normalize_key(normalized_key);
 
-    int text_len = strlen(text);
-    int key_len = strlen(normalized_key);
+    int text_len = (int)strlen(text);
+    int key_len = (int)strlen(normalized_key);
     int key_index = 0;
 
     for (int i = 0; i < text_len; i++) {
@@ -37,12 +38,12 @@ void vigenere_cipher(const char *text, const char *key, int encrypt) {
                 shift = -shift;
             }
 
-            ch = (ch - base + shift + 26) % 26 + base;
+            ch = (char)((ch - base + shift + 26) % 26 + base);
             key_index++;
         }
-        putchar(ch);
+        output[i] = ch;
     }
-    putchar('\n');
+    output[text_len] = '\0';
 }
 
 void vigenere_run(int argc, char *argv[]) {
@@ -66,5 +67,7 @@ void vigenere_run(int argc, char *argv[]) {
         return;
     }
 
-    vigenere_cipher(text, key, encrypt);
+    char output[1024]; // big enough buffer for output
+    vigenere_cipher(text, key, encrypt, output);
+    printf("%s\n", output);
 }

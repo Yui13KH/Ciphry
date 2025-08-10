@@ -36,3 +36,13 @@ unsigned char hex_to_byte(char high, char low) {
         (unsigned char)(isdigit(low) ? low - '0' : toupper(low) - 'A' + 10);
     return (h << 4) | l;
 }
+
+unsigned char hex_char_to_val(char c) {
+    if ('0' <= c && c <= '9')
+        return c - '0';
+    if ('a' <= c && c <= 'f')
+        return 10 + c - 'a';
+    if ('A' <= c && c <= 'F')
+        return 10 + c - 'A';
+    return 0;
+}

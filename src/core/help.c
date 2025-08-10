@@ -27,9 +27,7 @@ void print_caesar_help() {
 
 void print_atbash_help() {
     printf("Atbash Cipher Help:\n");
-    printf("  --encrypt \"<text>\"    Encrypts the text using Atbash cipher\n");
-    printf("  --decrypt \"<text>\"    Decrypts the text using Atbash cipher "
-           "(same as encrypt)\n");
+    printf(" \"<text>\"    Encrypts|Decrypts the text using Atbash cipher\n");
 }
 
 void print_vigenere_help() {

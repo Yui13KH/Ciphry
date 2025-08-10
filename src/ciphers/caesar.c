@@ -5,8 +5,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-// New: logic function that writes cipher text into output buffer
-// Assumes output buffer is large enough!
 void encrypt_caesar_str(const char *plaintext, int shift_key, char *output) {
     int index = 0;
     while (plaintext[index] != '\0') {
@@ -20,15 +18,13 @@ void encrypt_caesar_str(const char *plaintext, int shift_key, char *output) {
         output[index] = current_char;
         index++;
     }
-    output[index] = '\0'; // null terminate
+    output[index] = '\0';
 }
 
-// New: logic function for decrypt using encrypt_caesar_str
 void decrypt_caesar_str(const char *ciphertext, int shift_key, char *output) {
     encrypt_caesar_str(ciphertext, 26 - (shift_key % 26), output);
 }
 
-// Old style void functions that print, now reuse the string versions
 void encrypt_caesar(const char *plaintext, int shift_key) {
     char output[1024];
     encrypt_caesar_str(plaintext, shift_key, output);

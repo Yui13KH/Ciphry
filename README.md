@@ -15,7 +15,8 @@ It enables encryption and decryption of text via a clean CLI interface, designed
   - Atbash cipher  
   - Vigenère cipher
   - affine cipher
-  - railfence cipher  
+  - railfence cipher
+  - xor cipher  
 
 ---
 

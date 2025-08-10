@@ -8,9 +8,10 @@
 
 #define MODULUS 26 // assuming english alphabet
 
-// Encrypt/Decrypt function
-void affine_cipher(const char *text, int a, int b, int encrypt) {
-    for (size_t i = 0; i < strlen(text); i++) {
+// Encrypt/Decrypt function writing to output buffer
+void affine_cipher(const char *text, int a, int b, int encrypt, char *output) {
+    size_t len = strlen(text);
+    for (size_t i = 0; i < len; i++) {
         char c = text[i];
 
         if (isalpha(c)) {
@@ -20,32 +21,32 @@ void affine_cipher(const char *text, int a, int b, int encrypt) {
             if (encrypt) {
                 // Encryption: E(x) = (a*x + b) mod m
                 int enc = (a * x + b) % MODULUS;
-                printf("%c", base + enc);
+                output[i] = base + enc;
             } else {
                 // Decryption: D(x) = a_inv * (x - b) mod m
                 int a_inv = 0;
 
                 // Find multiplicative inverse of a mod m
-                for (int i = 1; i < MODULUS; i++) {
-                    if ((a * i) % MODULUS == 1) {
-                        a_inv = i;
+                for (int j = 1; j < MODULUS; j++) {
+                    if ((a * j) % MODULUS == 1) {
+                        a_inv = j;
                         break;
                     }
                 }
 
                 int dec = (a_inv * ((x - b + MODULUS) % MODULUS)) % MODULUS;
-                printf("%c", base + dec);
+                output[i] = base + dec;
             }
         } else {
-            printf("%c", c); // Non-alphabetic characters unchanged
+            output[i] = c; // Non-alphabetic characters unchanged
         }
     }
-    printf("\n");
+    output[len] = '\0'; // Null-terminate output string
 }
 
 // CLI handler for affine
 void affine_run(int argc, char *argv[]) {
-    if (argc < 5) {
+    if (argc < 7) { // Adjusted expected args count due to flags and params
         fprintf(stderr, "Usage: ciphry affine --encrypt/--decrypt <text> --a "
                         "<a> --b <b>\n");
         return;
@@ -59,14 +60,18 @@ void affine_run(int argc, char *argv[]) {
     for (int i = 2; i < argc; i++) {
         if (strcmp(argv[i], "--encrypt") == 0) {
             encrypt = 1;
-            text = argv[++i];
+            if (i + 1 < argc)
+                text = argv[++i];
         } else if (strcmp(argv[i], "--decrypt") == 0) {
             encrypt = 0;
-            text = argv[++i];
+            if (i + 1 < argc)
+                text = argv[++i];
         } else if (strcmp(argv[i], "--a") == 0) {
-            a = atoi(argv[++i]);
+            if (i + 1 < argc)
+                a = atoi(argv[++i]);
         } else if (strcmp(argv[i], "--b") == 0) {
-            b = atoi(argv[++i]);
+            if (i + 1 < argc)
+                b = atoi(argv[++i]);
         }
     }
 
@@ -80,5 +85,7 @@ void affine_run(int argc, char *argv[]) {
         return;
     }
 
-    affine_cipher(text, a, b, encrypt);
+    char output[1024]; // buffer large enough for most uses
+    affine_cipher(text, a, b, encrypt, output);
+    printf("%s\n", output);
 }
