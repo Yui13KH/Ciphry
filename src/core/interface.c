@@ -9,16 +9,15 @@
 #include "utils.h"
 #include "vigenere.h"
 
-
-int handle_command(int argc, char * argv[]) {
-    #include "cipher_registry.h"
+int handle_command(int argc, char *argv[]) {
+#include "cipher_registry.h"
 
     if (argc < 2) {
         print_general_help();
         return 1;
     }
 
-     const char *cmd = argv[1];
+    const char *cmd = argv[1];
 
     if (strcmp(cmd, "-h") == 0 || strcmp(cmd, "--help") == 0) {
         print_general_help();
@@ -39,4 +38,4 @@ int handle_command(int argc, char * argv[]) {
         printf("Try --help for usage.\n");
         return 1;
     }
-}   
+}

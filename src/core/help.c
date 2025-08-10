@@ -1,6 +1,6 @@
-#include <stdio.h>
 #include "help.h"
 #include "cipher_registry.h"
+#include <stdio.h>
 
 void print_general_help() {
     printf("Ciphry - Command-line cryptography toolkit\n\n");
@@ -13,43 +13,55 @@ void print_general_help() {
     printf("  --key       The key or parameter for the cipher\n\n");
     printf("Additional commands:\n");
     printf("  ciphry -l | --list    List all available ciphers\n");
-    printf("  ciphry <cipher> -h | --help     Show help for a specific cipher\n");
+    printf(
+        "  ciphry <cipher> -h | --help     Show help for a specific cipher\n");
 }
 
 void print_caesar_help() {
     printf("Caesar Cipher Help:\n");
-    printf("  --encrypt \"<text>\" --key <shift>    Encrypts the text using Caesar cipher\n");
-    printf("  --decrypt \"<text>\" --key <shift>    Decrypts the text using Caesar cipher\n");
+    printf("  --encrypt \"<text>\" --key <shift>    Encrypts the text using "
+           "Caesar cipher\n");
+    printf("  --decrypt \"<text>\" --key <shift>    Decrypts the text using "
+           "Caesar cipher\n");
 }
 
 void print_atbash_help() {
     printf("Atbash Cipher Help:\n");
     printf("  --encrypt \"<text>\"    Encrypts the text using Atbash cipher\n");
-    printf("  --decrypt \"<text>\"    Decrypts the text using Atbash cipher (same as encrypt)\n");
+    printf("  --decrypt \"<text>\"    Decrypts the text using Atbash cipher "
+           "(same as encrypt)\n");
 }
 
 void print_vigenere_help() {
     printf("Vigenère Cipher Help:\n");
-    printf("  --encrypt \"<text>\" --key <keyword>    Encrypts the text using the Vigenère cipher\n");
-    printf("  --decrypt \"<text>\" --key <keyword>    Decrypts the text using the Vigenère cipher\n");
+    printf("  --encrypt \"<text>\" --key <keyword>    Encrypts the text using "
+           "the Vigenère cipher\n");
+    printf("  --decrypt \"<text>\" --key <keyword>    Decrypts the text using "
+           "the Vigenère cipher\n");
 }
 
-void print_rot13_help(){
+void print_rot13_help() {
     printf("Rot13 Cipher Help:\n");
-    printf("  --encrypt \"<text>\"    Encrypts the text using the rot13 cipher\n");
-    printf("  --decrypt \"<text>\"    Decrypts the text using the rot13 cipher\n");
+    printf(
+        "  --encrypt \"<text>\"    Encrypts the text using the rot13 cipher\n");
+    printf(
+        "  --decrypt \"<text>\"    Decrypts the text using the rot13 cipher\n");
 }
 
 void print_affine_help() {
     printf("Affine Cipher Help:\n");
-    printf("  --encrypt \"<text>\" --a <a> --b <b>    Encrypts text with the Affine cipher\n");
-    printf("  --decrypt \"<text>\" --a <a> --b <b>    Decrypts text with the Affine cipher\n");
+    printf("  --encrypt \"<text>\" --a <a> --b <b>    Encrypts text with the "
+           "Affine cipher\n");
+    printf("  --decrypt \"<text>\" --a <a> --b <b>    Decrypts text with the "
+           "Affine cipher\n");
 }
 
 void print_railfence_help(void) {
     printf("Rail Fence Cipher Help:\n");
-    printf("  --encrypt \"<text>\" <rails>    Encrypt text with specified number of rails\n");
-    printf("  --decrypt \"<text>\" <rails>    Decrypt text with specified number of rails\n");
+    printf("  --encrypt \"<text>\" <rails>    Encrypt text with specified "
+           "number of rails\n");
+    printf("  --decrypt \"<text>\" <rails>    Decrypt text with specified "
+           "number of rails\n");
 }
 
 void print_xor_help(void) {
@@ -57,7 +69,6 @@ void print_xor_help(void) {
     printf("Example: xor encrypt secret \"Hello World\"\n");
     printf("Note: For encrypt mode, output is shown as hex bytes.\n");
 }
-
 
 void list_ciphers() {
     printf("Available ciphers:\n");
@@ -68,4 +79,3 @@ void list_ciphers() {
         printf("  %s - %s\n", ciphers[i].name, ciphers[i].description);
     }
 }
-

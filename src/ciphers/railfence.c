@@ -1,9 +1,9 @@
+#include "railfence.h"
+#include "help.h"
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
-#include "railfence.h"
-#include "help.h"
 
 void railfence_cipher(const char *text, int rails, int encrypt) {
     if (rails < 2) {
@@ -132,8 +132,7 @@ void railfence_run(int argc, char *argv[]) {
     } else if (strcmp(mode, "--decrypt") == 0 || strcmp(mode, "decrypt") == 0) {
         railfence_cipher(text, rails, 0);
     } else {
-        fprintf(stderr, "Unknown mode '%s'. Use '--encrypt' or '--decrypt'.\n", mode);
+        fprintf(stderr, "Unknown mode '%s'. Use '--encrypt' or '--decrypt'.\n",
+                mode);
     }
 }
-
-

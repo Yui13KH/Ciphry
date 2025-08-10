@@ -1,7 +1,7 @@
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
 
 #include "affine.h"
 #include "utils.h"
@@ -46,7 +46,8 @@ void affine_cipher(const char *text, int a, int b, int encrypt) {
 // CLI handler for affine
 void affine_run(int argc, char *argv[]) {
     if (argc < 5) {
-        fprintf(stderr, "Usage: ciphry affine --encrypt/--decrypt <text> --a <a> --b <b>\n");
+        fprintf(stderr, "Usage: ciphry affine --encrypt/--decrypt <text> --a "
+                        "<a> --b <b>\n");
         return;
     }
 

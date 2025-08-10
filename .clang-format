@@ -1,0 +1,32 @@
+# Use LLVM style as base, it’s clean and familiar
+BasedOnStyle: LLVM
+
+# Use 4 spaces indentation (standard for C)
+IndentWidth: 4
+
+# Don't use tabs, spaces only (avoids mixed tabs/spaces issues)
+UseTab: Never
+
+# Limit line length to 80 for readability (classic, but you can bump to 100 if you want)
+ColumnLimit: 80
+
+# Allow short functions to be on a single line if simple
+AllowShortFunctionsOnASingleLine: Inline
+
+# Break before braces on function and control statements (classic K&R style)
+BreakBeforeBraces: Attach
+
+# Space before parentheses on control statements for clarity
+SpaceBeforeParens: ControlStatements
+
+# Always put a space after keywords like if, for, while
+SpacesInParentheses: false
+
+# Align pointer asterisks with the type, e.g. int* ptr; not int *ptr;
+PointerAlignment: Right
+
+# Add a space after commas and operators for readability
+SpacesInContainerLiterals: true
+
+# Keep comments aligned nicely
+AlignTrailingComments: true

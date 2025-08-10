@@ -1,14 +1,14 @@
-#include <string.h>
-#include <ctype.h>
 #include "utils.h"
+#include <ctype.h>
+#include <string.h>
 
-int arg_is(const char *arg, const char *expected){
+int arg_is(const char *arg, const char *expected) {
     return strcmp(arg, expected) == 0;
 }
 
 int has_flag(int argc, char *argv[], const char *flag) {
-    for(int i = 1; i < argc; i++){
-        if(arg_is(argv[i], flag)) {
+    for (int i = 1; i < argc; i++) {
+        if (arg_is(argv[i], flag)) {
             return 1;
         }
     }
@@ -30,7 +30,9 @@ bool is_coprime(int a, int b) {
 }
 
 unsigned char hex_to_byte(char high, char low) {
-    unsigned char h = (unsigned char)(isdigit(high) ? high - '0' : toupper(high) - 'A' + 10);
-    unsigned char l = (unsigned char)(isdigit(low)  ? low  - '0' : toupper(low)  - 'A' + 10);
+    unsigned char h =
+        (unsigned char)(isdigit(high) ? high - '0' : toupper(high) - 'A' + 10);
+    unsigned char l =
+        (unsigned char)(isdigit(low) ? low - '0' : toupper(low) - 'A' + 10);
     return (h << 4) | l;
 }
